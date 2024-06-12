@@ -18,4 +18,4 @@ response = client.post(url, data, format='json')
 
 assert response.status_code == status.HTTP_201_CREATED
 assert 'username' in response.data
-assert response.data []
+# assert response.data []
