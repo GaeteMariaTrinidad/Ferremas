@@ -19,3 +19,7 @@ class Carrito(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} - {self.cantidad} - {self.herramienta.nombre} - {self.id} - {self.herramienta.precio}"
+    
+
+# class Usuario(models.Model):
+ 
