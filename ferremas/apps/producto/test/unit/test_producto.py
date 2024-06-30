@@ -35,6 +35,7 @@ class TestProductoService:
         
         update_precio_producto('Producto de prueba','PRU-23423','15000' )
         producto = get_producto(codigo_pro)
+
         assert producto.precio == 15000
 
 
