@@ -23,10 +23,6 @@ urlpatterns = [
     path('api/',include('apps.urls')),
     path('api/', include('apps.boleta.urls')),
     path('api/', include('apps.carrito.urls')),
-    path('api/', include('apps.login.urls')),
-    path('api/', include('apps.mermaProducto.urls')),
     path('api/', include('apps.producto.urls')),
-    path('api/', include('apps.tipoEntrega.urls')),
-    path('api/', include('apps.tipoPago.urls')),
     path('api/', include('apps.usuario.urls')),
 ]

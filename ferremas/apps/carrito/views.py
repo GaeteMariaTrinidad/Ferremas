@@ -10,6 +10,7 @@ from apps.producto.models import Producto
 from apps.usuario.models import Usuario
 # Create your views here.
 
+
 class CarritoView(View):
 
     @method_decorator(csrf_exempt)
@@ -26,14 +27,14 @@ class CarritoView(View):
         if len(carritos)>0:
             print(carritos)
             for carrito in carritos: 
-                print(carrito.herramienta.precio)
-                nombre = carrito.herramienta.nombre
+                print(carrito.producto.precio)
+                nombre = carrito.producto.nomre
                 cantidad = carrito.cantidad
-                precio = carrito.herramienta.precio
-                lista_herramientas.append({"id": carrito.id ,"nombre": nombre, "cantidad": cantidad, "precio": precio})  # Agrega el nombre y precio a la lista
+                precio = carrito.producto.precio
+                lista_herramientas.append({"id": carrito.id ,"nombre": nombre, "cantidad": cantidad, "precio": precio})  
                 valor_total += precio *cantidad
             lista_herramientas.append({"total": valor_total,"id_carrito": car[0]['usuario_id']})
-            datos={'message':"Success",'Articulos del Carrtito ':lista_herramientas}
+            datos={'message':"Success",'Articulos del Carrito ':lista_herramientas}
         else:
             datos={'message':"El Carrito esta vacio"}
         return JsonResponse(datos)
