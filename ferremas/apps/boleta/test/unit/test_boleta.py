@@ -1,5 +1,5 @@
 import pytest
-from apps.boleta.views import create_boleta, get_boleta, update_boleta, delete_boleta
+from views import create_boleta, get_boleta, update_boleta, delete_boleta
 from datetime import datetime
 
 @pytest.mark.django_db

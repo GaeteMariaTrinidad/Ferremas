@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
-from apps.boleta.models import Boleta
+from models import Boleta
 from datetime import datetime
 
 @pytest.mark.django_db

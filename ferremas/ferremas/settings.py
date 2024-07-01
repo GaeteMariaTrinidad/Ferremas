@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'apps.tipoEntrega',
     'apps.tipoPago',
     'apps.usuario',
-    'boleta'
     
 
 ]
