@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Boleta
 from .serializers import BoletaSerializer
 from rest_framework import generics
+from django.views.generic import DetailView
 
 # Create your views here.
 
@@ -12,6 +13,14 @@ class BoletaListCreate(generics.ListCreateAPIView):
 class BoletaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Boleta.objects.all()
     serializer_class = BoletaSerializer
+
+class BoletaDetailView(DetailView):
+    model= Boleta
+    template_name = 'boleta/boleta_detail.html'  
+
+class BoletaListCreateView(DetailView):
+    model= Boleta
+    template_name = 'boleta/boleta_list_create.html'       
 
 
 def create_boleta(Total, Fecha, Cliente, ProductosVendidos, NumBoleta): 

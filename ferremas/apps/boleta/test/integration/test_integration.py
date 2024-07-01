@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
-from models import Boleta
+from apps.boleta.models import Boleta
 from datetime import datetime
 
 @pytest.mark.django_db
@@ -33,7 +33,7 @@ class TestBoletaAPI:
         Prueba que se pueda obtener una boleta por medio de la API
         """
         boleta = Boleta.objects.create(**self.boleta_data)
-        url = reverse('boleta_detail', args=[boleta.numBoleta])
+        url = reverse('boleta_detail', args=[boleta.pk])
 
         response = self.client.get(url, format='json')
 
@@ -45,7 +45,7 @@ class TestBoletaAPI:
         Prueba que se pueda actualizar una boleta por medio de la API
         """
         boleta = Boleta.objects.create(**self.boleta_data)
-        url = reverse('boleta_detail', args=[boleta.numBoleta])
+        url = reverse('boleta_detail', args=[boleta.pk])
 
         updated_data = self.boleta_data.copy()
         updated_data['total'] = 46460
@@ -61,7 +61,7 @@ class TestBoletaAPI:
         Prueba que se pueda eliminar una boleta por medio de la API
         """
         boleta = Boleta.objects.create(**self.boleta_data)
-        url = reverse('boleta_detail', args=[boleta.numBoleta])
+        url = reverse('boleta_detail', args=[boleta.pk])
 
         response = self.client.delete(url, format='json')
 
