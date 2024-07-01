@@ -27,7 +27,6 @@ class CarritoView(View):
         if len(carritos)>0:
             print(carritos)
             for carrito in carritos: 
-                print(carrito.producto.precio)
                 nombre = carrito.producto.nomre
                 cantidad = carrito.cantidad
                 precio = carrito.producto.precio
@@ -39,10 +38,39 @@ class CarritoView(View):
             datos={'message':"El Carrito esta vacio"}
         return JsonResponse(datos)
         
+    '''
+    def post(self, request):
+            try:
+                jd = json.loads(request.body)
+                id_herramienta = jd.get('id')  # Asegúrate de obtener correctamente el id del producto desde el JSON
+                cantidadjd = jd.get('cantidad')
 
+                # Validación del producto existente
+                herramienta = get_object_or_404(Producto, pk=id_herramienta)
 
+                # Validación de stock
+                if cantidadjd > herramienta.stock:
+                    return JsonResponse({'error': 'La cantidad no puede sobrepasar el stock'}, status=status.HTTP_400_BAD_REQUEST)
 
-        
+                # Validación de carritos existentes y cantidad acumulada
+                contador = Carrito.objects.filter(herramienta=herramienta).aggregate(total_cantidad=models.Sum('cantidad'))['total_cantidad'] or 0
+
+                if contador + cantidadjd > herramienta.stock:
+                    return JsonResponse({'error': 'Stock insuficiente'}, status=status.HTTP_400_BAD_REQUEST)
+
+                # Creación del carrito
+                user = Usuario.objects.get()  # Asegúrate de obtener el usuario adecuadamente
+                Carrito.objects.create(usuario=user, herramienta=herramienta, cantidad=cantidadjd)
+                
+                return JsonResponse({'message': 'Success se ha agregado al carrito'}, status=status.HTTP_201_CREATED)
+            
+            except json.JSONDecodeError:
+                return JsonResponse({'error': 'Formato JSON inválido'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            except Producto.DoesNotExist:
+                return JsonResponse({'error': 'Producto no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+    '''        
     def post(self, request):
         errors = []
         contador = 0
@@ -80,6 +108,8 @@ class CarritoView(View):
         else:
             errors.append({'codigo_producto': id_herramienta, 'error': 'No se a encontrado el producto', 'status': 'failed'})
             return JsonResponse({'errors': errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    
 
     def delete(self, request,id):
         print(id)
