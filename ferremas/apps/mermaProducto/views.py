@@ -29,10 +29,12 @@ def create_mermaProducto(Producto1, Detalle_merma, Fecha, ValorPerdida):
  
 def get_mermaProducto(producto_numMermaProducto):
     try:
-        mermaProduto = Producto.objects.get(detalle_Merma=producto_numMermaProducto)
+        print(f"5 {producto_numMermaProducto}")
+        mermaProduto = Producto.objects.get(detalle_merma=producto_numMermaProducto)
+        print("6")
         print(mermaProduto)
         return mermaProduto
-    except mermaProduto.DoesNotExist:
+    except Producto.DoesNotExist:
         print(f"No se encontró una merma del producto {producto_numMermaProducto}")
         return None
     
