@@ -8,10 +8,6 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         correo = data.get('correo')
         contrasena = data.get('contrasena')
-
-        if not correo or not contrasena:
-            raise serializers.ValidationError("Correo y contraseña son requeridos.")
-
         try:
             user = Usuario.objects.get(correo=correo)
         except Usuario.DoesNotExist:
@@ -19,6 +15,11 @@ class LoginSerializer(serializers.Serializer):
 
         if user.contrasena != contrasena:
             raise serializers.ValidationError("Contraseña incorrecta.")
+
+        if not correo or not contrasena:
+            raise serializers.ValidationError("Correo y contraseña son requeridos.")
+
+
 
         data['user'] = user
         return data
