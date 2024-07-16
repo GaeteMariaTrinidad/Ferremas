@@ -21,10 +21,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin', admin.site.urls),
     path('api/',include('apps.urls')),
-    path('api/', include('apps.boleta.urls')),
-    path('api/', include('apps.carrito.urls')),
-    path('api/', include('apps.producto.urls')),
-    path('api/', include('apps.usuario.urls')),
-    path('api/', include('apps.login.urls')),
-    path('api/', include('apps.mermaProducto.urls')),
+    path('api/',include('apps.boleta.urls')),
+    path('api/',include('apps.carrito.urls')),
+    path('api/',include('apps.producto.urls')),
+    path('api/',include('apps.usuario.urls')),
+    path('api/',include('apps.login.urls')),
+    path('api/',include('apps.mermaProducto.urls')),
 ]

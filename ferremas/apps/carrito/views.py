@@ -35,7 +35,7 @@ class CarritoView(View):
             lista_herramientas.append({"total": valor_total,"id_carrito": car[0]['usuario_id']})
             datos={'message':"Success",'Articulos del Carrito ':lista_herramientas}
         else:
-            datos={'message':"El Carrito esta vacio"}
+            datos={'message':"El Carrito está vacío"}
         return JsonResponse(datos)
         
     '''
@@ -103,7 +103,7 @@ class CarritoView(View):
                         print(user.id)
                         herramienta = get_object_or_404(Producto, pk=id_herramienta)
                         carrito.objects.create(usuario_id=user.id,herramienta=herramienta,cantidad=cantidadjd)
-                        datos={'message':"Success se a gregado al carrito"}
+                        datos={'message':"El producto se ha gregado al carrito"}
                         return JsonResponse(datos)
         else:
             errors.append({'codigo_producto': id_herramienta, 'error': 'No se a encontrado el producto', 'status': 'failed'})
@@ -118,9 +118,9 @@ class CarritoView(View):
         if len(carritos)>0:
             Carrito.objects.filter(id=id).delete()
             carritos_delete = list(Carrito.objects.filter(id=id).values())
-            datos={'message':"Success",'El articulo se eliminado: ':carritos_delete}
+            datos={'message':"Success",'El carrito se ha eliminado: ':carritos_delete}
         else:
-            datos={'message':"El Articulo no se a encontrado"}
+            datos={'message':"El carrito no se ha encontrado"}
         return JsonResponse(datos)
     
 

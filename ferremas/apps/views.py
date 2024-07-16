@@ -43,7 +43,7 @@ class CarritoView(View):
                 lista_herramientas.append({"id": carrito.id ,"nombre": nombre, "cantidad": cantidad, "precio": precio})  # Agrega el nombre y precio a la lista
                 valor_total += precio *cantidad
             lista_herramientas.append({"total": valor_total,"id_carrito": car[0]['usuario_id']})
-            datos={'message':"Success",'Articulos del Carrtito ':lista_herramientas}
+            datos={'message':"Success",'Artículos del Carrito ':lista_herramientas}
         else:
             datos={'message':"El Carrito esta vacio"}
         return JsonResponse(datos)
@@ -97,9 +97,9 @@ class CarritoView(View):
         if len(carritos)>0:
             Carrito.objects.filter(id=id).delete()
             carritos_delete = list(Carrito.objects.filter(id=id).values())
-            datos={'message':"Success",'El articulo se eliminado: ':carritos_delete}
+            datos={'message':"Success",'El carrito se ha eliminado: ':carritos_delete}
         else:
-            datos={'message':"El Articulo no se a encontrado"}
+            datos={'message':"El carrito no se ha encontrado"}
         return JsonResponse(datos)
 
 
